@@ -3,9 +3,15 @@ window.addEventListener('DOMContentLoaded', () => {
     let player2 = "O"
     let winner = document.querySelector('.winmsg')
     let Turn = player1
+    let p1p = document.getElementById('p1p')
+    p1p.value
+    p1 = 0
+    p2 = 0
     let showTurn = document.querySelector('.playerTurn')
     var player1List = []
     var player2List = []
+    let p1score = document.querySelector("#scr1") 
+    let p2score = document.querySelector("#scr2")
     const available = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const cells = document.querySelectorAll('.cell')
     const resetBtn = document.querySelector ("#reset")
@@ -28,6 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
             event.target.textContent = Turn
             Turn = player2
             showTurn.innerHTML = "Player O's turn"
+            scr1.textContent
             
         }
         else if (Turn == player2) {
@@ -48,7 +55,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 console.log('Player X wins!')
                 winner.textContent = 'Player X won!'
                 isWinningConditionMet = true
-
+                p1++
+                p1score.textContent = ' '+p1
             }
             count = 0
             condition.forEach(cell => {
@@ -56,12 +64,15 @@ window.addEventListener('DOMContentLoaded', () => {
             })
             if (count === 3) {
                 console.log('Player O wins!')
+                console.log(p1p)
+                winner.textContent = p1p + ' won!'
                 winner.textContent = 'Player O won!'
                 isWinningConditionMet = true
+                p2++
+                p2score.textContent = ' '+p2
             }
-
             if (player1List.length + player2List.length === 9) {
-
+                winner.textContent = 'Draw'
             }
         })
         if (isWinningConditionMet) cells.forEach(cell => {
@@ -107,6 +118,10 @@ function reset() {
         winner.textContent = ''
         showTurn.textContent = ''
     })
+
+// function (event){
+//         if 
+
 }
         
 
