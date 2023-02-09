@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let winner = document.querySelector('.winmsg')
     let Turn = player1
     let p1p = document.getElementById('p1p')
+    let p2p = document.getElementById('p2p')
     p1p.value
     p1 = 0
     p2 = 0
@@ -15,6 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const available = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const cells = document.querySelectorAll('.cell')
     const resetBtn = document.querySelector ("#reset")
+    const refreshButton = document.querySelector('#newGame');
     // const winningMsg = document.querySelector ("#win")
     const winningCond = [
         [1, 2, 3],
@@ -33,7 +35,8 @@ window.addEventListener('DOMContentLoaded', () => {
             player1List.push(parseInt(event.target.dataset.id))
             event.target.textContent = Turn
             Turn = player2
-            showTurn.innerHTML = "Player O's turn"
+            // showTurn.innerHTML = "Player O's turn"
+            showTurn.innerHTML = `${p2p.value}'s Turn`
             scr1.textContent
             
         }
@@ -42,7 +45,8 @@ window.addEventListener('DOMContentLoaded', () => {
             player2List.push(parseInt(event.target.dataset.id))
             event.target.textContent = Turn
             Turn = player1
-            showTurn.innerHTML = "Player X's turn"
+            // showTurn.innerHTML = "Player X's turn"
+            showTurn.innerHTML = `${p1p.value}'s Turn`
         }
 
         let isWinningConditionMet = false
@@ -53,7 +57,8 @@ window.addEventListener('DOMContentLoaded', () => {
             })
             if (count === 3) {
                 console.log('Player X wins!')
-                winner.textContent = 'Player X won!'
+                winner.textContent = `${p1p.value} wins!`
+                showTurn.textContent = ''
                 isWinningConditionMet = true
                 p1++
                 p1score.textContent = ' '+p1
@@ -65,13 +70,14 @@ window.addEventListener('DOMContentLoaded', () => {
             if (count === 3) {
                 console.log('Player O wins!')
                 console.log(p1p)
-                winner.textContent = p1p + ' won!'
-                winner.textContent = 'Player O won!'
+                winner.textContent =`${p2p.value} wins!`
+                showTurn.textContent = ''
+                // winner.textContent = 'Player O won!'
                 isWinningConditionMet = true
                 p2++
                 p2score.textContent = ' '+p2
             }
-            if (player1List.length + player2List.length === 9) {
+            if (player1List.length + player2List.length === 9 && isWinningConditionMet === false) {
                 winner.textContent = 'Draw'
             }
         })
@@ -118,6 +124,12 @@ function reset() {
         winner.textContent = ''
         showTurn.textContent = ''
     })
+
+const refreshPage = () => {
+    location.reload();
+}
+
+refreshButton.addEventListener('click', refreshPage)
 
 // function (event){
 //         if 
